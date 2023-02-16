@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import styled from "styled-components"
 
 function importAll(r) {
@@ -38,19 +39,7 @@ background-color:#D8D8D8;
 height:200px;
 position:relative;
 `
-const Button = styled.button`
-width:218px;
-height:73px;
-background: #FAD34F;
-border-radius: 500px;
-font-weight: 400;
-font-size: 18px;
-line-height: 18px;
-color: #FFFFFF;
-border-style:none;
-margin-top:17px;
-margin-left:2px;
-`
+
 const MainForm=styled.form`
 {
   width:563px;
@@ -80,6 +69,7 @@ const TextInput = styled.input`
   padding:34px 0 31px 46px;
   margin-bottom:10px;
   font-size: 18px;
+  color:black;
   :last-of-type{
     position:absolute:
   height:125px;
@@ -100,10 +90,72 @@ const TextInput = styled.input`
 // `
 
 
+
+
 function App() {
+
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+  const [message,setMessage]=useState('')
+
+  const [isValid,setToValid]= useState({
+    nameValid:true,
+    emailValid:true,
+  })
+
+  const nameHandler=(event)=>{
+    console.log(event.target.value)
+    setName(event.target.value)
+
+    if (name==''){
+      setToValid({...isValid, nameValid:false})
+    } else if (name.length>0){
+      setToValid({...isValid, nameValid:true})
+    }
+  }
+
+  const emailHandler=(event)=>{
+    console.log(event.target.value)
+    setEmail(event.target.value)
+
+    if (!email.includes('@')){
+      setToValid({...isValid, emailValid:false})
+    } else if (email.includes('@')){
+      setToValid({...isValid, emailValid:true})
+    }
+  }
+
+  const messageHandler=(event)=>{
+    console.log(event.target.value)
+    setMessage(event.target.value)
+  }
+
+  const onClick =(event)=>{
+    event.preventDefault()
+    console.log(isValid)
+    if(name==''){
+      setToValid({...isValid, nameValid:false})
+      return
+    } 
+
+    if(email.includes('@')==false){
+      setToValid({...isValid, emailValid:false})
+       return
+    }
+
+    setName('')
+    setEmail('')
+    setMessage('')
+
+  }
+
+    
+     
+
+
+
   return (
     <div>
-
     <MainWrapper>
          <BackgroundWrapper> 
             <img src={images['cartoon4.png']} className='c4'/>
@@ -120,16 +172,16 @@ function App() {
             <img src={images['cloud8.png']} className='cl8'/>
             <img src={images['cloud9.png']} className='cl9'/>
             <img src={images['map.png']} className='map'/>
+          </BackgroundWrapper>
+          <MainForm onSubmit={onClick} >       
+            <h1>Reach out to us!</h1>
+            <TextInput type='text' className={!isValid.nameValid ? 'invalid' :''} value={name} placeholder="Your name*" onChange={nameHandler}></TextInput>
+            <TextInput type='text' className={!isValid.emailValid ? 'invalid' :''} value={email} placeholder="Your e-mail*" onChange={emailHandler}></TextInput>
+            <TextInput type='text' value={message} placeholder="Your message*" onChange={messageHandler}></TextInput>
+            <button >Send message</button>
+          </MainForm>
             
-              <MainForm>       
-                <h1>Reach out to us!</h1>
-                <TextInput type='text' value='' placeholder="Your name*"></TextInput>
-                <TextInput type='text' value='' placeholder="Your e-mail*"></TextInput>
-                <TextInput type='text' value='' placeholder="Your message*"></TextInput>
-                <Button>Send message</Button>
-              </MainForm>
-            
-        </BackgroundWrapper>
+        
     </MainWrapper>
        
         
