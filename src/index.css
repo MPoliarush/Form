@@ -5,6 +5,7 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
  color: antiquewhite;
+ /* border: 1px solid black; */
 }
 
 .c4{
@@ -127,10 +128,11 @@ top: -5px;
 z-index: 0;
 }
 
-.c6{
+.c6 {
   position: absolute;
   top:-38px;
   left:15px;
+
 }
 
 .green{
