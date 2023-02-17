@@ -36,5 +36,6 @@ const addInputs =  async (req,res,next)=>{
     return res.status(200).json({input})
 }
 
+
 exports.getAllInputs = getAllInputs;
 exports.addInputs = addInputs;
