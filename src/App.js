@@ -162,18 +162,12 @@ function App() {
     setEmail('')
     setMessage('')
 
-
-
   }
 
     
-     
-
-
 
   return (
     <div>
-    
          <BackgroundWrapper> 
             <img src={images['cartoon4.png']} className='c4'/>
             <img src={images['cartoon3.png']} className='c3'/>
@@ -198,22 +192,19 @@ function App() {
             <TextInput type='text' className={!isValid.messageValid ? 'invalid' :''} value={message} placeholder="Your message*" onChange={messageHandler}></TextInput>
             <button >Send message</button>
           </MainForm>
-            
-    </MainWrapper>
-       
-        
-  
-      <Footer>
-        <img src={images['cartoon6.png']} className='c6'/>
-        <img src={images['green.png']} className='green'/>
-        <img src={images['cartoon5.png']} className='c5'/>
-        <div className="links">
-          <a href="#"><img src={images['In.png']} className='linked'></img></a>
-          <a href="#"><img src={images['twiter.png']} className='linked'></img></a>
-          <a href="#"><img src={images['fb.png']} className='linked'></img></a>
-          <a href="#"><img src={images['pint.png']} className='linked'></img></a>
-        </div> 
-      </Footer>
+        </MainWrapper>
+      
+        <Footer>
+          <img src={images['cartoon6.png']} className='c6'/>
+          <img src={images['green.png']} className='green'/>
+          <img src={images['cartoon5.png']} className='c5'/>
+          <div className="links">
+            <a href="#"><img src={images['In.png']} className='linked'></img></a>
+            <a href="#"><img src={images['twiter.png']} className='linked'></img></a>
+            <a href="#"><img src={images['fb.png']} className='linked'></img></a>
+            <a href="#"><img src={images['pint.png']} className='linked'></img></a>
+          </div> 
+        </Footer>
     </div>
   );
 
