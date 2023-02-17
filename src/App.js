@@ -12,7 +12,6 @@ function importAll(r) {
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 
 
-
 const MainWrapper = styled.main`
 width:100%;
 max-width:1440px;
@@ -20,21 +19,19 @@ margin:0 auto;
 height:928px;
 background-color:transparent;
 color:#2D2D2D;
-
 z-index:0;
 overflow:hidden;
 `
-const BackgroundWrapper = styled.div`
 
+const BackgroundWrapper = styled.div`
 width:100%;
 margin:0 auto;
 position:absolute;
 z-index:2;
-
 position:relative;
 `
-const Footer = styled.footer`
 
+const Footer = styled.footer`
 width:100%;
 margin:0 auto;
 background-color:#FAFAFA;
@@ -62,8 +59,9 @@ color: #3E3E3E;
 margin-bottom:39px;
 
 }
-
 `
+
+
 const TextInput = styled.input`
   display:block;
   width:88.5%;
@@ -85,23 +83,11 @@ const TextInput = styled.input`
   padding-bottom:131px;
   }
   
-
-
-${'' /* input::placeholder{
-  font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 180%;
-padding:30px 411px 30px 46px;
-} */}
-
 `
 
 
 const url = 'http://localhost:8000/inputs'
 
-
-// 'http://localhost:8000/inputs/'
 
 function App() {
 
@@ -116,7 +102,7 @@ function App() {
   })
 
   const nameHandler=(event)=>{
-    console.log(event.target.value)
+
     setName(event.target.value)
 
     if (name==''){
@@ -127,7 +113,6 @@ function App() {
   }
 
   const emailHandler=(event)=>{
-    console.log(event.target.value)
     setEmail(event.target.value)
 
     if (!email.includes('@')){
@@ -138,7 +123,6 @@ function App() {
   }
 
   const messageHandler=(event)=>{
-    console.log(event.target.value)
     setMessage(event.target.value)
 
     if (message==''){
@@ -150,7 +134,6 @@ function App() {
 
   const onClick =(event)=>{
     event.preventDefault()
-   console.log(isValid)
     if(name==''){
       setToValid({...isValid, nameValid:false})
       return
