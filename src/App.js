@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import styled from "styled-components"
+import axios from 'axios'
 
 function importAll(r) {
   let images = {};
@@ -14,18 +15,18 @@ const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/
 
 const MainWrapper = styled.main`
 width:100%;
-height:1000px;
+max-width:1440px;
 margin:0 auto;
 height:928px;
 background-color:transparent;
 color:#2D2D2D;
-position:relative;
 
 z-index:0;
 overflow:hidden;
 `
 const BackgroundWrapper = styled.div`
-width:1440px;
+
+width:100%;
 margin:0 auto;
 position:absolute;
 z-index:2;
@@ -33,64 +34,74 @@ z-index:2;
 position:relative;
 `
 const Footer = styled.footer`
-max-width:1440px;
+
+width:100%;
 margin:0 auto;
-background-color:#D8D8D8;
+background-color:#FAFAFA;
 height:200px;
 position:relative;
+z-index:4;
 `
 
 const MainForm=styled.form`
 {
-  width:563px;
-  margin-left:147px;
-  position:relative;
+  width:39.9%;
   top:174px;
   font-family: "Apercu Arabic Pro";
+  padding-left:149px;
+  position:relative;
+  z-index:5;
 }
+
 h1{
   font-style: normal;
 font-weight: 400;
 font-size: 40px;
 line-height: 130%;
 color: #3E3E3E;
-margin-bottom:38px;
+margin-bottom:39px;
 
 }
 
 `
 const TextInput = styled.input`
-  width:563px;
   display:block;
-  width:90%;
+  width:88.5%;
   background: #FFFFFF;
   border: 1px solid #DCDCDC;
-  border-radius: 8px;
-  padding:34px 0 31px 46px;
-  margin-bottom:10px;
+  border-radius: 10px;
+  padding:33px 0 35px 47px;
+  font-weight: 400;
+  margin-bottom:8px;
   font-size: 18px;
   color:black;
+  background-color:#FFFFFF;
+  position:relative;
+  z-index:3;
   :last-of-type{
     position:absolute:
   height:125px;
-  padding-top:35px;
-  padding-bottom:126px;
+  padding-top:31px;
+  padding-bottom:131px;
   }
   
+
+
+${'' /* input::placeholder{
+  font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 180%;
+padding:30px 411px 30px 46px;
+} */}
+
 `
 
-// input::placeholder{
-//   font-style: normal;
-// font-weight: 400;
-// font-size: 18px;
-// line-height: 180%;
-// padding:30px 411px 30px 46px;
-// }
 
-// `
+const url = 'http://localhost:8000/inputs'
 
 
-
+// 'http://localhost:8000/inputs/'
 
 function App() {
 
@@ -101,6 +112,7 @@ function App() {
   const [isValid,setToValid]= useState({
     nameValid:true,
     emailValid:true,
+    messageValid:true
   })
 
   const nameHandler=(event)=>{
@@ -128,11 +140,17 @@ function App() {
   const messageHandler=(event)=>{
     console.log(event.target.value)
     setMessage(event.target.value)
+
+    if (message==''){
+      setToValid({...isValid, messageValid:false})
+    } else if (message.length>0){
+      setToValid({...isValid, messageValid:true})
+    }
   }
 
   const onClick =(event)=>{
     event.preventDefault()
-    console.log(isValid)
+   console.log(isValid)
     if(name==''){
       setToValid({...isValid, nameValid:false})
       return
@@ -143,9 +161,25 @@ function App() {
        return
     }
 
+    if(message==''){
+      setToValid({...isValid, messageValid:false})
+      return
+    } 
+
+    const inputData={
+      name:name,
+      email:email,
+      message:message
+    }
+
+    axios.post(url, inputData)
+      .then(response=>console.log(response.data))
+
     setName('')
     setEmail('')
     setMessage('')
+
+
 
   }
 
@@ -156,7 +190,7 @@ function App() {
 
   return (
     <div>
-    <MainWrapper>
+    
          <BackgroundWrapper> 
             <img src={images['cartoon4.png']} className='c4'/>
             <img src={images['cartoon3.png']} className='c3'/>
@@ -173,15 +207,15 @@ function App() {
             <img src={images['cloud9.png']} className='cl9'/>
             <img src={images['map.png']} className='map'/>
           </BackgroundWrapper>
+        <MainWrapper>
           <MainForm onSubmit={onClick} >       
             <h1>Reach out to us!</h1>
             <TextInput type='text' className={!isValid.nameValid ? 'invalid' :''} value={name} placeholder="Your name*" onChange={nameHandler}></TextInput>
             <TextInput type='text' className={!isValid.emailValid ? 'invalid' :''} value={email} placeholder="Your e-mail*" onChange={emailHandler}></TextInput>
-            <TextInput type='text' value={message} placeholder="Your message*" onChange={messageHandler}></TextInput>
+            <TextInput type='text' className={!isValid.messageValid ? 'invalid' :''} value={message} placeholder="Your message*" onChange={messageHandler}></TextInput>
             <button >Send message</button>
           </MainForm>
             
-        
     </MainWrapper>
        
         
