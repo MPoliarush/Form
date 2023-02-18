@@ -1,5 +1,3 @@
-//MkQXQYDUdrgkBNqa
-
 const express = require('express')
 const mongoose = require('mongoose')
 const router = require('./input-routes')
@@ -15,7 +13,6 @@ app.use(express.json())
 mongoose.set('strictQuery', true);
 
 app.use('/inputs',router)
-
 
 
 mongoose.connect("mongodb+srv://admin:MkQXQYDUdrgkBNqa@cluster0.4xjj9qr.mongodb.net/Input?retryWrites=true&w=majority")

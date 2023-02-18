@@ -1,8 +1,10 @@
+
+
 * {
   margin: 0;
   padding: 0;
   color: antiquewhite;
-
+  
 }
 
 body{
@@ -125,10 +127,10 @@ body{
   z-index: 0;
 }
 
-.c6 {
+.c6{
   position: absolute;
-  top:-38px;
-  left:15px;
+  top: -38px;
+  left: 15px;
 }
 
 .green{
@@ -139,14 +141,14 @@ body{
 .c5{
   position: absolute;
   right: 0px;
-  top:50px;
+  top: 50px;
 }
 
 .links{
   display: flex;
-  margin-left:343px;
+  margin-left: 343px;
   padding-top: 79px;
-  gap:25px;
+  gap: 25px;
 }
 
 button{
@@ -160,14 +162,14 @@ button{
   color: #FFFFFF;
   border-style:none;
   margin-top:15px;
-  margin-left:2px;
+  margin-left:4px;
   transition: 0.2s;
 }
 
 button:hover{
-cursor: pointer;
-background: #f7c41e;
-transition: 0.2s;
+  cursor: pointer;
+  background: #f7c41e;
+  transition: 0.2s;
 }
 
 .invalid{

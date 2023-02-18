@@ -1,7 +1,6 @@
-
 const Input = require('./Input')
 
-const getAllInputs =  async (req,res,next)=>{
+const getAllInputs = async (req,res,next)=>{
     let inputs;
     try{
         inputs = await Input.find();
@@ -15,7 +14,7 @@ const getAllInputs =  async (req,res,next)=>{
     return res.status(200).json({inputs})
 }
 
-const addInputs =  async (req,res,next)=>{
+const addInputs = async (req,res,next)=>{
     let input;
     const {name, email, message} = req.body;
     try{

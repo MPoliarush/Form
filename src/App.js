@@ -1,11 +1,11 @@
-
-import { useState } from "react";
+import { useState } from "react"
 import styled from "styled-components"
 import axios from 'axios'
 
+
 function importAll(r) {
   let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  r.keys().map((item) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
 
@@ -43,44 +43,41 @@ z-index:4;
 const MainForm=styled.form`
 {
   width:39.9%;
-  top:174px;
+  top:175px;
   font-family: "Apercu Arabic Pro";
-  padding-left:149px;
+  padding-left:146px;
   position:relative;
   z-index:5;
 }
 
 h1{
   font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 130%;
-color: #3E3E3E;
-margin-bottom:39px;
-
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 52px;
+  color:#3E3E3E;
+  margin-bottom:39px;
 }
 `
 
-
 const TextInput = styled.input`
+  font-family: "Apercu Arabic Pro";
   display:block;
   width:88.5%;
-  background: #FFFFFF;
+  background:#FFFFFF;
   border: 1px solid #DCDCDC;
   border-radius: 10px;
-  padding:33px 0 35px 47px;
+  padding:31px 0 35px 49px;
   font-weight: 400;
   margin-bottom:8px;
-  font-size: 18px;
-  color:black;
+  font-size:18px;
+  color:#2D2D2D;
   background-color:#FFFFFF;
   position:relative;
   z-index:3;
   :last-of-type{
-    position:absolute:
-  height:125px;
-  padding-top:31px;
-  padding-bottom:131px;
+    padding-top:27px;
+    padding-bottom:131px;
   }
   
 `
@@ -91,18 +88,17 @@ const url = 'http://localhost:8000/inputs'
 
 function App() {
 
-  const [name,setName]=useState('')
-  const [email,setEmail]=useState('')
-  const [message,setMessage]=useState('')
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
+  const [message,setMessage] = useState('')
 
-  const [isValid,setToValid]= useState({
+  const [isValid,setToValid] = useState({
     nameValid:true,
     emailValid:true,
     messageValid:true
   })
 
   const nameHandler=(event)=>{
-
     setName(event.target.value)
 
     if (name==''){
@@ -125,9 +121,9 @@ function App() {
   const messageHandler=(event)=>{
     setMessage(event.target.value)
 
-    if (message==''){
+    if(message==''){
       setToValid({...isValid, messageValid:false})
-    } else if (message.length>0){
+    } else if(message.length>0){
       setToValid({...isValid, messageValid:true})
     }
   }
@@ -141,7 +137,7 @@ function App() {
 
     if(email.includes('@')==false){
       setToValid({...isValid, emailValid:false})
-       return
+      return
     }
 
     if(message==''){
@@ -161,7 +157,6 @@ function App() {
     setName('')
     setEmail('')
     setMessage('')
-
   }
 
     
@@ -207,7 +202,6 @@ function App() {
         </Footer>
     </div>
   );
-
 }
 
-export default App;
+export default App
